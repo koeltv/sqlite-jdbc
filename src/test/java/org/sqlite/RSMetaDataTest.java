@@ -61,9 +61,6 @@ public class RSMetaDataTest {
         assertThat(meta.isNullable(1)).isEqualTo(ResultSetMetaData.columnNullable);
         assertThat(meta.isNullable(2)).isEqualTo(ResultSetMetaData.columnNullable);
         assertThat(meta.isNullable(3)).isEqualTo(ResultSetMetaData.columnNullable);
-        assertThat(((JDBC3ResultSet) meta).isPrimary(1)).isTrue();
-        assertThat(((JDBC3ResultSet) meta).isPrimary(2)).isFalse();
-        assertThat(((JDBC3ResultSet) meta).isPrimary(3)).isFalse();
     }
 
     @Test
@@ -196,12 +193,6 @@ public class RSMetaDataTest {
         assertThat(meta.isNullable(2)).isEqualTo(ResultSetMetaData.columnNoNulls);
         assertThat(meta.isNullable(3)).isEqualTo(ResultSetMetaData.columnNoNulls);
         assertThat(meta.isNullable(4)).isEqualTo(ResultSetMetaData.columnNullable);
-    }
-
-    @Test
-    public void primary() throws SQLException {
-        meta = stat.executeQuery("select pid from people;").getMetaData();
-        assertThat(((JDBC4ResultSet) meta).isPrimary(1)).isTrue();
     }
 
     @Test
